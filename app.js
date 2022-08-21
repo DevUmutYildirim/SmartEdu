@@ -11,6 +11,9 @@ app.set("view engine", "ejs"); // set engine
 
 // Middlewares
 app.use(express.static("public")); // show static files
+// we need to use this middlwares to catch the data comes from the req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/", pageRoute);
