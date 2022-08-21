@@ -2,7 +2,8 @@
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "mongoose": "^6.5.2"
+    "mongoose": "^6.5.2",
+    "slugify": "^1.6.5"
   },
   "name": "smartedu",
   "version": "1.0.0",
