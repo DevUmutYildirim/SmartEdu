@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 exports.createUser = async (req, res) => {
   try {
@@ -17,30 +18,19 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.getAllCategorys = async (req, res) => {
+exports.loginUser = async (req, res) => {
   try {
-    const categories = await Category.find();
+    const { email, password } = req.body;
 
-    res.status(200).render("Categories", {
-      categories,
-      page_name: "Categories",
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      error,
-    });
-  }
-};
-
-exports.getCategory = async (req, res) => {
-  try {
-    // catch the req.params.slug and define as Category
-    const category = await category.findOne({ slug: req.params.slug });
-    // render Category variable to Category template.
-    res.status(200).render("Category", {
-      category,
-      page_name: "Categorys",
+    await User.findOne({ email }, (err, user) => {
+      if (user) {
+        bcrypt.compare(password, user.password, (err, same) => {
+          if (same) {
+            // USER SESSION
+            res.status(200).send("YOU ARE LOGGED IN");
+          }
+        });
+      }
     });
   } catch (error) {
     res.status(400).json({
