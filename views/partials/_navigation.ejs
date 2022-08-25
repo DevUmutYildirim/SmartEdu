@@ -36,6 +36,9 @@
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
         </ul>
+
+        <% if(!userIN) { %>
+
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a
@@ -52,6 +55,20 @@
             ></a>
           </li>
         </ul>
+
+        <% } %> <% if(userIN) { %>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a
+              class="hover-btn-new log <%= page_name === 'login' && 'orange' %> mr-2"
+              href="/login"
+              ><span><i class="fa fa-sign-out" aria-hidden="true"></i></span
+            ></a>
+          </li>
+        </ul>
+
+        <% } %>
       </div>
     </div>
   </nav>
